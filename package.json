@@ -1,0 +1,40 @@
+{
+  "name": "typescript-lib-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "jest",
+    "test-watch": "jest --watch",
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/wand3r/typescript-lib-boilerplate.git"
+  },
+  "homepage": "https://github.com/wand3r/typescript-lib-boilerplate#readme",
+  "bugs": {
+    "url": "https://github.com/wand3r/typescript-lib-boilerplate/issues"
+  },
+  "keywords": [
+    "typescript"
+  ],
+  "tags": [
+    "typescript"
+  ],
+  "author": "Wojciech Karaś <wkaras89@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^21.1.9",
+    "jest": "^22.0.4",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^22.0.0",
+    "typescript": "^2.6.2"
+  }
+}
