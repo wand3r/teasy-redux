@@ -4,7 +4,9 @@
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "jest",
     "test-watch": "jest --watch",
@@ -20,8 +22,12 @@
   "bugs": {
     "url": "https://github.com/wand3r/typescript-lib-boilerplate/issues"
   },
-  "keywords": ["typescript"],
-  "tags": ["typescript"],
+  "keywords": [
+    "typescript"
+  ],
+  "tags": [
+    "typescript"
+  ],
   "author": "Wojciech Karaś <wkaras89@gmail.com>",
   "license": "ISC",
   "devDependencies": {
@@ -29,6 +35,7 @@
     "jest": "^22.0.4",
     "rimraf": "^2.6.2",
     "ts-jest": "^22.0.0",
+    "ts-node": "^4.1.0",
     "typescript": "^2.6.2"
   }
 }
