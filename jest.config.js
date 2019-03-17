@@ -1,11 +1,8 @@
 module.exports = {
   transform: {
-    "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js",
+    "^.+\\.ts$": "ts-jest",
   },
-  testMatch: [
-    "**/__tests__/**/*.(js|ts)?(x)",
-    "**/?(*.)(test|spec).(ts|js)?(x)",
-  ],
-  moduleFileExtensions: ["ts", "tsx", "js", "json", "jsx"],
+  testRegex: "\\.spec\\.ts$",
+  moduleFileExtensions: ["ts", "js"],
   collectCoverage: false,
 }

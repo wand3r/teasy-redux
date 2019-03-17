@@ -1,26 +1,27 @@
 {
-  "name": "typescript-lib-boilerplate",
-  "version": "1.0.0",
-  "description": "",
+  "name": "teasy-redux",
+  "version": "0.0.0",
+  "description": "Boilerplate free typings for redux",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "test": "jest",
     "test-watch": "jest --watch",
     "clean": "rimraf dist",
-    "build": "npm run clean && tsc",
-    "prepublishOnly": "npm run build"
+    "build": "yarn run clean && tsc -p tsconfig.commonjs.json",
+    "prepublishOnly": "yarn run build"
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/wand3r/typescript-lib-boilerplate.git"
+    "url": "http://github.com/wand3r/teasy-redux.git"
   },
-  "homepage": "https://github.com/wand3r/typescript-lib-boilerplate#readme",
+  "homepage": "https://github.com/wand3r/teasy-redux#readme",
   "bugs": {
-    "url": "https://github.com/wand3r/typescript-lib-boilerplate/issues"
+    "url": "https://github.com/wand3r/teasy-redux/issues"
   },
   "keywords": [
     "typescript"
