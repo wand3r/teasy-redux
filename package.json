@@ -24,7 +24,10 @@
     "url": "https://github.com/wand3r/teasy-redux/issues"
   },
   "keywords": [
-    "typescript"
+    "typescript",
+    "ts",
+    "redux",
+    "utility"
   ],
   "tags": [
     "typescript"
