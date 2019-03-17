@@ -1,7 +1,6 @@
 export type Action<ActionType = string, Payload = any> = {
   type: ActionType
-  payload: Payload
-}
+} & Payload
 
 export type ActionCreator<
   ActionType = string,
@@ -12,7 +11,9 @@ export type ActionCreator<
   type: ActionType
 }
 
-export const payload = <Payload>() => (payload: Payload) => payload
+export const payload = <Payload, Args extends any[] = [Payload]>(
+  map: (...args: Args) => Payload = (...args) => args[0],
+) => (...args: Args) => ({ payload: map(...args) })
 
 export const createAction = <
   ActionType extends string,
@@ -23,8 +24,8 @@ export const createAction = <
   mapPayload: (...args: Args) => Payload,
 ): ActionCreator<ActionType, Args, Payload> => {
   const actionCreator = (...args: Args) => ({
+    ...mapPayload(...args),
     type,
-    payload: mapPayload(...args),
   })
   actionCreator.type = type
   return actionCreator
@@ -50,9 +51,7 @@ export const createActions = <Schema extends ActionsSchema>(
   return actionCreators
 }
 
-export const is = <
-  ActionsToMatch extends ActionCreator | ActionCreators | ActionCreator[]
->(
+export const is = <ActionsToMatch extends ActionPack>(
   action: Action,
   actionsToMatch: ActionsToMatch,
 ): action is ActionUnion<ActionsToMatch> => {
@@ -71,20 +70,14 @@ export const is = <
   throw Error("Wrong matchTo type")
 }
 
-export type ActionPack =
-  | Action
-  | ActionCreator
-  | ActionCreators
-  | ActionCreator[]
+export type ActionPack = ActionCreator | ActionCreators | ActionCreator[]
 
-export type ActionUnion<Actions extends ActionPack> = Actions extends Action
-  ? Actions
-  : Actions extends ActionCreator
+export type ActionUnion<
+  Actions extends ActionPack
+> = Actions extends ActionCreator
   ? ReturnType<Actions>
   : Actions extends ActionCreators
   ? { [P in keyof Actions]: ReturnType<Actions[P]> }[keyof Actions]
   : Actions extends ActionCreator[]
   ? ReturnType<Actions[number]>
-  : Actions extends ActionsSchema
-  ? { [P in keyof Actions]: Action<P, Actions[P]> }[keyof Actions]
   : never

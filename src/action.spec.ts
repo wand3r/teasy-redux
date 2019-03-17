@@ -4,7 +4,7 @@ import { ActionUnion } from "./action"
 describe("action creation", () => {
   test("single action", () => {
     const action = createAction("add", payload<{ id: number }>())
-    isType<Action<"add", { id: number }>>(action({ id: 1 }))
+    isType<Action<"add", { payload: { id: number } }>>(action({ id: 1 }))
     expect(action({ id: 1 })).toEqual({ type: "add", payload: { id: 1 } })
     expect(action.type).toEqual("add")
   })
@@ -15,18 +15,18 @@ describe("action creation", () => {
       remove: payload<void>(),
     })
     test("object payload", () => {
-      isType<Action<"add", { id: number }>>(actions.add({ id: 2 }))
+      isType<Action<"add", { payload: { id: number } }>>(actions.add({ id: 2 }))
       expect(actions.add({ id: 2 })).toEqual({
         type: "add",
         payload: { id: 2 },
       })
     })
     test("primitive payload", () => {
-      isType<Action<"edit", number>>(actions.edit(2))
+      isType<Action<"edit", { payload: number }>>(actions.edit(2))
       expect(actions.edit(2)).toEqual({ type: "edit", payload: 2 })
     })
     test("empty payload", () => {
-      isType<Action<"remove", void>>(actions.remove())
+      isType<Action<"remove", { payload: void }>>(actions.remove())
       expect(actions.remove()).toEqual({
         type: "remove",
         payload: undefined,

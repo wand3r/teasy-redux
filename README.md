@@ -4,12 +4,12 @@ Utility functions for boilerplate free Redux with TypeScript
 
 ```typescript
 const actions = createActions({
-  addTodo: (text: string) => ({
+  addTodo: payload((text: string) => ({
     id: Math.random(),
     text,
-  }),
+  })),
   editTodo: payload<{ id: number; text: string }>(),
-  removeTodo: payload<number>(),
+  removeTodo: (id: number) => ({ payload: { id } }),
 })
 
 actions.addTodo("New text")
@@ -24,23 +24,14 @@ type State = { id: number; text: string }[]
 
 const reducer = createReducer<State, typeof actions>(
   {
-    addTodo: (todos, { payload: newTodo }) => {
-      return [...todos, newTodo]
+    addTodo: (todos, { payload: { id, text } }) => {
+      return todos
     },
     editTodo: (todos, { payload: { id, text } }) => {
-      return todos.map((todo) => {
-        if (todo.id === id) {
-          return {
-            ...todo,
-            text,
-          }
-        } else {
-          return todo
-        }
-      })
+      return todos
     },
-    removeTodo: (todos, { payload: id }) => {
-      return todos.filter((todo) => todo.id !== id)
+    removeTodo: (todos, { payload: { id } }) => {
+      return todos
     },
   },
   [],

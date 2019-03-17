@@ -1,4 +1,4 @@
-import { Action, ActionCreator, ActionCreators, ActionUnion } from "."
+import { Action, ActionUnion, ActionPack } from "."
 import { DeepReadonly } from "./type-utils"
 
 type ReducerMap<TActionUnion extends Action, State> = {
@@ -8,10 +8,7 @@ type ReducerMap<TActionUnion extends Action, State> = {
   ) => State
 } & { default?: (state: State) => State }
 
-export const createReducer = <
-  TState,
-  TActions extends Action | ActionCreator | ActionCreators | ActionCreator[]
->(
+export const createReducer = <TState, TActions extends ActionPack>(
   cases: ReducerMap<ActionUnion<TActions>, DeepReadonly<TState>>,
   initialState: DeepReadonly<TState>,
 ) => (
