@@ -2,7 +2,21 @@
 
 Utility functions for boilerplate free Redux with TypeScript
 
-## Action Creators
+## Installation
+
+```
+yarn add teasy-redux
+```
+
+or
+
+```
+npm i teasy-redux
+```
+
+## Usage
+
+### Action Creators
 
 ```typescript
 const addTodo = createAction(
@@ -29,7 +43,7 @@ actions.editTodo({ id: 123, text: "Edited text" })
 actions.removeTodo(123)
 ```
 
-## Reducers
+### Reducers
 
 ```typescript
 type State = { id: number; text: string }[]
@@ -70,7 +84,7 @@ const reducer = (todos: State, action: ActionUnion<typeof actions>): State => {
 }
 ```
 
-## Type Guards
+### Type Guards
 
 ```typescript
 if (is(anyAction, actions.addTodo)) {
@@ -84,7 +98,7 @@ if (is(anyAction, actions)) {
 }
 ```
 
-## Action Union
+### Action Union
 
 ```typescript
 const actionsArr = [actions.addTodo, actions.removeTodo]
