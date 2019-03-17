@@ -1,8 +1,20 @@
+# TeaSy Redux
+
 Utility functions for boilerplate free Redux with TypeScript
 
-## Action creators
+## Action Creators
 
 ```typescript
+const addTodo = createAction(
+  "ADD_TODO",
+  payload((text: string) => ({
+    id: Math.random(),
+    text,
+  })),
+)
+
+addTodo("text")
+
 const actions = createActions({
   addTodo: payload((text: string) => ({
     id: Math.random(),
@@ -36,4 +48,47 @@ const reducer = createReducer<State, typeof actions>(
   },
   [],
 )
+
+const reducer = (todos: State, action: ActionUnion<typeof actions>): State => {
+  switch (action.type) {
+    case actions.addTodo.type: {
+      const { id, text } = action.payload
+      return todos
+    }
+    case actions.editTodo.type: {
+      const { id, text } = action.payload
+      return todos
+    }
+    case actions.removeTodo.type: {
+      const { id } = action.payload
+      return todos
+    }
+    default: {
+      return todos
+    }
+  }
+}
+```
+
+## Type Guards
+
+```typescript
+if (is(anyAction, actions.addTodo)) {
+  // ...
+}
+if (is(anyAction, [actions.addTodo, actions.editTodo])) {
+  // ...
+}
+if (is(anyAction, actions)) {
+  // ...
+}
+```
+
+## Action Union
+
+```typescript
+const actionsArr = [actions.addTodo, actions.removeTodo]
+
+type Union1 = ActionUnion<typeof actions>
+type Union2 = ActionUnion<typeof actionsArr>
 ```
