@@ -106,3 +106,11 @@ const actionsArr = [actions.addTodo, actions.removeTodo]
 type Union1 = ActionUnion<typeof actions>
 type Union2 = ActionUnion<typeof actionsArr>
 ```
+
+## Prior work
+
+- [unionize](https://github.com/pelotom/unionize)
+- [ts-action](https://github.com/cartant/ts-action)
+- [typesafe-actions](https://github.com/piotrwitek/typesafe-actions)
+- [typescript-fsa](https://github.com/aikoven/typescript-fsa)
+- [redux-actions](https://redux-actions.js.org/)
