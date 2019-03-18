@@ -12,7 +12,7 @@ describe("create reducer", () => {
       createReducer<State, typeof actions>(
         {
           add: (state, action) => {
-            isType<Action<"add", { id: number }>>(action)
+            isType<Action<"add", { payload: { id: number } }>>(action)
             return state
           },
         },
@@ -24,7 +24,7 @@ describe("create reducer", () => {
       createReducer<State, typeof actionsArr>(
         {
           add: (state, action) => {
-            isType<Action<"add", { id: number }>>(action)
+            isType<Action<"add", { payload: { id: number } }>>(action)
             return state
           },
         },
@@ -32,10 +32,10 @@ describe("create reducer", () => {
       )
     })
     test("with actions union", () => {
-      createReducer<State, ActionUnion<typeof actions>>(
+      createReducer<State, typeof actions>(
         {
           add: (state, action) => {
-            isType<Action<"add", { id: number }>>(action)
+            isType<Action<"add", { payload: { id: number } }>>(action)
             return state
           },
         },
@@ -46,7 +46,7 @@ describe("create reducer", () => {
       createReducer<State, typeof actions["add"]>(
         {
           add: (state, action) => {
-            isType<Action<"add", { id: number }>>(action)
+            isType<Action<"add", { payload: { id: number } }>>(action)
             return state
           },
         },
