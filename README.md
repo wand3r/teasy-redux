@@ -2,6 +2,8 @@
 
 Utility functions for boilerplate free Redux with TypeScript
 
+[Presentation](https://gitpitch.com/wand3r/ts-redux-meetup#/)
+
 ## Installation
 
 ```
