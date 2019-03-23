@@ -24,9 +24,9 @@ export const Counter: FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
   return (
     <div>
-      <button onClick={() => dispatch(actions.decrement({ by: 2 }))} />
+      <button onClick={() => dispatch(actions.decrement({ by: 2 }))}>-</button>>
       <span>{state.count}</span>
-      <button onClick={() => dispatch(actions.increment({ by: 2 }))} />
+      <button onClick={() => dispatch(actions.increment({ by: 2 }))}>+</button>
     </div>
   )
 }
