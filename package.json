@@ -1,6 +1,6 @@
 {
   "name": "teasy-redux",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "description": "Boilerplate free typings for redux",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
