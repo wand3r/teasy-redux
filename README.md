@@ -109,6 +109,40 @@ type Union1 = ActionUnion<typeof actions>
 type Union2 = ActionUnion<typeof actionsArr>
 ```
 
+## Usage with useReducer Hook
+
+```tsx
+const actions = createActions({
+  increment: payload<{ by: number }>(),
+  decrement: payload<{ by: number }>(),
+})
+
+const initialState = { count: 0 }
+
+const reducer = createReducer<{ count: number }, typeof actions>(
+  {
+    increment: (state, { payload: { by } }) => {
+      return { count: state.count + by }
+    },
+    decrement: (state, { payload: { by } }) => {
+      return { count: state.count - by }
+    },
+  },
+  initialState,
+)
+
+export const Counter: FC = () => {
+  const [state, dispatch] = useReducer(reducer, initialState)
+  return (
+    <div>
+      <button onClick={() => dispatch(actions.decrement({ by: 2 }))} />
+      <span>{state.count}</span>
+      <button onClick={() => dispatch(actions.increment({ by: 2 }))} />
+    </div>
+  )
+}
+```
+
 ## Prior work
 
 - [unionize](https://github.com/pelotom/unionize)
