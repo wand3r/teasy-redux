@@ -18,7 +18,7 @@ export const createReducer = <TState, TActions extends ActionPack>(
   const type = action.type
   const state = currentState !== undefined ? currentState : initialState
   if (type in cases) {
-    return (cases as any)[type](state, action.payload)
+    return (cases as any)[type](state, action)
   } else if (cases.default) {
     return cases.default(state as any)
   } else {

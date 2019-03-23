@@ -1,9 +1,9 @@
 import { createActions, createReducer, payload } from "./index"
-import { Action, ActionUnion } from "./action"
+import { Action } from "./action"
 
 describe("create reducer", () => {
-  type State = { id: number; counter: number }
-  const state: State = { id: 10, counter: 0 }
+  type State = number[]
+  const state: State = []
   const actions = createActions({
     add: payload<{ id: number }>(),
   })
@@ -54,48 +54,42 @@ describe("create reducer", () => {
       )
     })
   })
-  describe("process", () => {
+  describe("handles", () => {
     test("matching action", () => {
       const reducer = createReducer<State, typeof actions>(
         {
-          add: (state, _action) => {
-            return { ...state, counter: state.counter + 1 }
+          add: (state, { payload: { id } }) => {
+            return [...state, id]
           },
         },
-        {} as State,
+        [],
       )
-      expect(reducer(state, actions.add({ id: 10 }))).toEqual({
-        id: 10,
-        counter: 1,
-      })
+      expect(reducer(state, actions.add({ id: 10 }))).toEqual([10])
     })
     test("unmatching action with implicit default handler", () => {
       const reducer = createReducer<State, typeof actions>(
         {
-          add: (state, _action) => {
-            return { ...state, counter: state.counter + 1 }
+          add: (state, { payload: { id } }) => {
+            return [...state, id]
           },
         },
-        {} as State,
+        [],
       )
       expect(reducer(state, { type: "foo", payload: undefined })).toEqual(state)
     })
     test("unmatching action with explicit default handler", () => {
       const reducer = createReducer<State, typeof actions>(
         {
-          add: (state, _action) => {
-            return { ...state, counter: state.counter + 1 }
+          add: (state, { payload: { id } }) => {
+            return [...state, id]
           },
           default: (state) => {
-            return { ...state, counter: -1 }
+            return [...state, 1]
           },
         },
-        {} as State,
+        [] as State,
       )
-      expect(reducer(state, { type: "foo", payload: undefined })).toEqual({
-        id: 10,
-        counter: -1,
-      })
+      expect(reducer(state, { type: "foo", payload: undefined })).toEqual([1])
     })
   })
 })
