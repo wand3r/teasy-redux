@@ -111,6 +111,8 @@ type Union2 = ActionUnion<typeof actionsArr>
 
 ## Usage with useReducer Hook
 
+[CodeSandbox](https://codesandbox.io/s/l6n0mx389)
+
 ```tsx
 const actions = createActions({
   increment: payload<{ by: number }>(),
