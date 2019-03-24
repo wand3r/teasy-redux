@@ -51,7 +51,7 @@ actions.removeTodo(123)
 
 - shows TS error when not all actions are handled
 - makes state deep readonly in all handlers to prevent accidental mutation
-- handles `default` case automatically, by returning unchanged state
+- handles `default` case automatically by returning unchanged state
 - allows specifying own `default` handler
 
 ```typescript
