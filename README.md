@@ -47,6 +47,13 @@ actions.removeTodo(123)
 
 ### Reducers
 
+`createReducer`
+
+- shows TS error when not all actions are handled
+- makes state deep readonly in all handlers to prevent accidental mutation
+- handles `default` case automatically, by returning unchanged state
+- allows specifying own `default` handler
+
 ```typescript
 type State = { id: number; text: string }[]
 
@@ -119,9 +126,11 @@ const actions = createActions({
   decrement: payload<{ by: number }>(),
 })
 
-const initialState = { count: 0 }
+type State = { count: number }
 
-const reducer = createReducer<{ count: number }, typeof actions>(
+const initialState: State = { count: 0 }
+
+const reducer = createReducer<State, typeof actions>(
   {
     increment: (state, { payload: { by } }) => {
       return { count: state.count + by }
@@ -137,7 +146,7 @@ export const Counter: FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
   return (
     <div>
-      <button onClick={() => dispatch(actions.decrement({ by: 2 }))}>-</button>
+      <button onClick={() => dispatch(actions.decrement({ by: 2 }))}>-</button>>
       <span>{state.count}</span>
       <button onClick={() => dispatch(actions.increment({ by: 2 }))}>+</button>
     </div>

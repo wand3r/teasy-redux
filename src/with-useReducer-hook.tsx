@@ -6,9 +6,11 @@ const actions = createActions({
   decrement: payload<{ by: number }>(),
 })
 
-const initialState = { count: 0 }
+type State = { count: number }
 
-const reducer = createReducer<{ count: number }, typeof actions>(
+const initialState: State = { count: 0 }
+
+const reducer = createReducer<State, typeof actions>(
   {
     increment: (state, { payload: { by } }) => {
       return { count: state.count + by }
