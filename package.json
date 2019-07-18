@@ -35,13 +35,13 @@
   "author": "Wojciech Karaś <wkaras89@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "@types/jest": "24.0.11",
-    "@types/react": "16.8.8",
-    "jest": "24.5.0",
-    "react": "16.8.5",
-    "rimraf": "2.6.2",
-    "ts-jest": "24.0.0",
-    "ts-node": "8.0.3",
-    "typescript": "3.3.3333"
+    "@types/jest": "24.0.15",
+    "@types/react": "16.8.23",
+    "jest": "24.8.0",
+    "react": "16.8.6",
+    "rimraf": "2.6.3",
+    "ts-jest": "24.0.2",
+    "ts-node": "8.3.0",
+    "typescript": "3.5.3"
   }
 }

@@ -4,7 +4,7 @@ export type Action<ActionType = string, Payload = any> = {
 
 export type ActionCreator<
   ActionType = string,
-  Args extends any[] = any[],
+  Args extends any[] = any,
   Payload = any
 > = {
   (...args: Args): Action<ActionType, Payload>
@@ -76,8 +76,8 @@ export type ActionUnion<
   Actions extends ActionPack
 > = Actions extends ActionCreator
   ? ReturnType<Actions>
-  : Actions extends ActionCreators
+  : Actions extends { [actionType: string]: ActionCreator<string, any, any> }
   ? { [P in keyof Actions]: ReturnType<Actions[P]> }[keyof Actions]
-  : Actions extends ActionCreator[]
+  : Actions extends ActionCreator<string, any, any>[]
   ? ReturnType<Actions[number]>
   : never
